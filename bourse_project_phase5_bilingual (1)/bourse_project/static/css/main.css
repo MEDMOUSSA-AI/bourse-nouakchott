@@ -34,7 +34,7 @@ body {
   color: var(--text);
   font-family: var(--font-body);
   line-height: 1.6;
-  direction: rtl;
+  
 }
 
 a { color: inherit; }
