@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "طلب إدراج جديد" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{{ company.legal_name }}</div>
+      <h1>{% trans "تقديم طلب إدراج" %}</h1>
+    </div>
+  </div>
+
+  <div class="card" style="max-width:520px;">
+    <p style="color:var(--muted); font-size:14px; margin-bottom:22px;">
+      {% trans "سيتم مراجعة طلبك من قبل إدارة المنصة. عند الموافقة، سيُنشأ سهم جديد للشركة في السوق تلقائيًا بالسعر المقترح." %}
+    </p>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="field">
+        <label for="{{ form.requested_shares.id_for_label }}">{% trans "عدد الأسهم المطلوب إدراجها" %}</label>
+        {{ form.requested_shares }}
+        {{ form.requested_shares.errors }}
+      </div>
+      <div class="field">
+        <label for="{{ form.requested_price_per_share.id_for_label }}">{% trans "السعر المقترح للسهم الواحد" %}</label>
+        {{ form.requested_price_per_share }}
+        {{ form.requested_price_per_share.errors }}
+      </div>
+      <div class="field">
+        <label for="{{ form.requested_symbol.id_for_label }}">{% trans "رمز السهم المقترح (اختياري)" %}</label>
+        {{ form.requested_symbol }}
+        <p style="color:var(--muted); font-size:12px; margin-top:6px;">{% trans "حروف إنجليزية و/أو أرقام، من حرفين إلى 6 (مثال: BZRK). إن تُرك فارغًا، سيولّده النظام تلقائيًا من اسم الشركة." %}</p>
+        {{ form.requested_symbol.errors }}
+      </div>
+      <button type="submit" class="btn">{% trans "إرسال الطلب" %}</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

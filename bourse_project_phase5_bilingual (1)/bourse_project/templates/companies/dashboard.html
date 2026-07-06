@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "لوحة تحكم الشركة" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "لوحة الشركة" %}</div>
+      <h1>{% if company %}{{ company.legal_name }}{% else %}{% trans "أكمل ملف شركتك" %}{% endif %}</h1>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <a href="{% url 'companies:profile_edit' %}" class="btn-outline" style="width:auto; padding:10px 18px; border-radius:8px;">
+        {% if company %}{% trans "تعديل بيانات الشركة" %}{% else %}{% trans "إكمال بيانات الشركة" %}{% endif %}
+      </a>
+      {% if company %}
+      <a href="{% url 'companies:listing_request_create' %}" class="btn" style="width:auto; padding:10px 18px;">{% trans "تقديم طلب إدراج" %}</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if company %}
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">{% trans "حالة الإدراج" %}</div>
+        <div class="value"><span class="badge {{ company.listing_status }}">{{ company.get_listing_status_display }}</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="label">{% trans "إجمالي الأسهم المُصدرة" %}</div>
+        <div class="value numeric">{{ company.total_shares_issued }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">{% trans "القيمة الاسمية للسهم" %}</div>
+        <div class="value numeric">{{ company.nominal_share_value }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">{% trans "القطاع" %}</div>
+        <div class="value" style="font-size:17px;">{{ company.sector }}</div>
+      </div>
+    </div>
+
+    <div class="section-title">{% trans "طلبات الإدراج" %}</div>
+    {% if company.listing_requests.all %}
+    <table class="data-table">
+      <thead>
+        <tr><th>{% trans "الأسهم المطلوبة" %}</th><th>{% trans "السعر المقترح" %}</th><th>{% trans "الحالة" %}</th><th>{% trans "ملاحظة الإدارة" %}</th><th>{% trans "تاريخ التقديم" %}</th></tr>
+      </thead>
+      <tbody>
+        {% for lr in company.listing_requests.all %}
+        <tr>
+          <td class="numeric">{{ lr.requested_shares }}</td>
+          <td class="numeric">{{ lr.requested_price_per_share }}</td>
+          <td><span class="badge {{ lr.status }}">{{ lr.get_status_display }}</span></td>
+          <td>{{ lr.admin_note|default:"—" }}</td>
+          <td class="numeric">{{ lr.submitted_at|date:"Y-m-d" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+      <div class="icon">📝</div>
+      <p>{% trans "لم تقدّم أي طلب إدراج بعد." %}</p>
+    </div>
+    {% endif %}
+
+    <div class="section-title">{% trans "التقارير المالية المنشورة" %}</div>
+    {% if company.financial_reports.all %}
+    <table class="data-table">
+      <thead>
+        <tr><th>{% trans "النوع" %}</th><th>{% trans "الفترة" %}</th><th>{% trans "الإيرادات" %}</th><th>{% trans "صافي الربح" %}</th><th>{% trans "تاريخ النشر" %}</th></tr>
+      </thead>
+      <tbody>
+        {% for report in company.financial_reports.all %}
+        <tr>
+          <td>{{ report.get_report_type_display }}</td>
+          <td>{{ report.fiscal_period }}</td>
+          <td class="numeric">{{ report.revenue|default:"—" }}</td>
+          <td class="numeric">{{ report.net_profit|default:"—" }}</td>
+          <td class="numeric">{{ report.published_at|date:"Y-m-d" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+      <div class="icon">📄</div>
+      <p>{% trans "لا توجد تقارير مالية منشورة بعد. ستتمكن من رفعها في المرحلة القادمة." %}</p>
+    </div>
+    {% endif %}
+
+  {% else %}
+    <div class="empty-state">
+      <div class="icon">🏢</div>
+      <p>{% trans "لم يتم إنشاء ملف الشركة بعد. سيتم إضافة نموذج إكمال البيانات في المرحلة التالية من التطوير." %}</p>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

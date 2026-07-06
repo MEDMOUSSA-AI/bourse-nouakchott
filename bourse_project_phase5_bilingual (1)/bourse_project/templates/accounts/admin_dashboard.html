@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "لوحة إدارة المنصة" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "إدارة المنصة" %}</div>
+      <h1>{% blocktrans with username=user.username %}مرحبًا، {{ username }}{% endblocktrans %}</h1>
+    </div>
+    <a href="/admin/" class="btn" style="width:auto;">{% trans "فتح لوحة إدارة Django" %}</a>
+  </div>
+
+  <div class="empty-state">
+    <div class="icon">⚙</div>
+    <p>{% trans "هذه لوحة تحكم مبدئية للمرحلة الأولى." %}<br>
+    {% trans "استخدم لوحة إدارة Django لمراجعة طلبات الإدراج، المستخدمين، والمستندات حتى نبني واجهات مخصصة في المراحل القادمة." %}</p>
+  </div>
+</div>
+{% endblock %}

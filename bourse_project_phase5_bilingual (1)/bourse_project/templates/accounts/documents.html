@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "مستنداتي" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "التحقق من الهوية" %}</div>
+      <h1>{% trans "مستنداتي" %}</h1>
+    </div>
+  </div>
+
+  <div class="card" style="max-width:520px; margin-bottom:36px;">
+    <h3 style="margin-bottom:18px; font-size:17px;">{% trans "رفع مستند جديد" %}</h3>
+    <form method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+      <div class="field">
+        <label for="{{ form.document_type.id_for_label }}">{% trans "نوع المستند" %}</label>
+        {{ form.document_type }}
+        {{ form.document_type.errors }}
+      </div>
+      <div class="field">
+        <label for="{{ form.file.id_for_label }}">{% trans "الملف" %}</label>
+        {{ form.file }}
+        {{ form.file.errors }}
+      </div>
+      <button type="submit" class="btn">{% trans "رفع المستند" %}</button>
+    </form>
+  </div>
+
+  <div class="section-title">{% trans "المستندات المرفوعة" %}</div>
+  {% if documents %}
+  <table class="data-table">
+    <thead><tr><th>{% trans "النوع" %}</th><th>{% trans "الحالة" %}</th><th>{% trans "تاريخ الرفع" %}</th><th>{% trans "ملاحظة المراجع" %}</th></tr></thead>
+    <tbody>
+      {% for doc in documents %}
+      <tr>
+        <td>{{ doc.document_type }}</td>
+        <td><span class="badge {{ doc.status }}">{{ doc.get_status_display }}</span></td>
+        <td class="numeric">{{ doc.uploaded_at|date:"Y-m-d" }}</td>
+        <td>{{ doc.reviewer_note|default:"—" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty-state">
+    <div class="icon">📎</div>
+    <p>{% trans "لم تقم برفع أي مستندات بعد." %}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

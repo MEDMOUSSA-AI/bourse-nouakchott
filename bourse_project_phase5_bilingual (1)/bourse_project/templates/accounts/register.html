@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "إنشاء حساب — بورصة الأسهم" %}{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+  <div class="auth-card" style="max-width: 480px;">
+    <div class="eyebrow">{% trans "حساب جديد" %}</div>
+    <h1>{% trans "انضم إلى المنصة" %}</h1>
+    <p class="sub">{% trans "اختر نوع الحساب الذي يناسب نشاطك في السوق" %}</p>
+
+    {% if form.non_field_errors %}
+      <div class="non-field-errors">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="{{ form.role.id_for_label }}">{% trans "نوع الحساب" %}</label>
+        {{ form.role }}
+        {{ form.role.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.username.id_for_label }}">{% trans "اسم المستخدم" %}</label>
+        {{ form.username }}
+        {{ form.username.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.email.id_for_label }}">{% trans "البريد الإلكتروني" %}</label>
+        {{ form.email }}
+        {{ form.email.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.phone_number.id_for_label }}">{% trans "رقم الهاتف (اختياري)" %}</label>
+        {{ form.phone_number }}
+        {{ form.phone_number.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.password1.id_for_label }}">{% trans "كلمة المرور" %}</label>
+        {{ form.password1 }}
+        {% if form.password1.help_text %}<div class="helptext">{{ form.password1.help_text|safe }}</div>{% endif %}
+        {{ form.password1.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.password2.id_for_label }}">{% trans "تأكيد كلمة المرور" %}</label>
+        {{ form.password2 }}
+        {{ form.password2.errors }}
+      </div>
+
+      <button type="submit" class="btn">{% trans "إنشاء الحساب" %}</button>
+    </form>
+
+    <div class="auth-switch">
+      {% trans "لديك حساب بالفعل؟" %} <a href="{% url 'accounts:login' %}">{% trans "تسجيل الدخول" %}</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

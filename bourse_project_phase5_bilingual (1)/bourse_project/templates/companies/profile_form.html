@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "بيانات الشركة" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "ملف الشركة" %}</div>
+      <h1>{% if company %}{% trans "تعديل بيانات الشركة" %}{% else %}{% trans "إكمال بيانات الشركة" %}{% endif %}</h1>
+    </div>
+  </div>
+
+  <div class="card" style="max-width:640px;">
+    <form method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="{{ form.legal_name.id_for_label }}">{% trans "الاسم القانوني للشركة" %}</label>
+        {{ form.legal_name }}
+        {{ form.legal_name.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.trade_name.id_for_label }}">{% trans "الاسم التجاري" %}</label>
+        {{ form.trade_name }}
+        {{ form.trade_name.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.registration_number.id_for_label }}">{% trans "رقم السجل التجاري" %}</label>
+        {{ form.registration_number }}
+        {{ form.registration_number.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.sector.id_for_label }}">{% trans "القطاع الاقتصادي" %}</label>
+        {{ form.sector }}
+        {{ form.sector.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.founded_year.id_for_label }}">{% trans "سنة التأسيس" %}</label>
+        {{ form.founded_year }}
+        {{ form.founded_year.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.headquarters.id_for_label }}">{% trans "المقر الرئيسي" %}</label>
+        {{ form.headquarters }}
+        {{ form.headquarters.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.website.id_for_label }}">{% trans "الموقع الإلكتروني" %}</label>
+        {{ form.website }}
+        {{ form.website.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.logo.id_for_label }}">{% trans "شعار الشركة" %}</label>
+        {{ form.logo }}
+        {{ form.logo.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.description.id_for_label }}">{% trans "نبذة عن الشركة" %}</label>
+        {{ form.description }}
+        {{ form.description.errors }}
+      </div>
+
+      <button type="submit" class="btn">{% trans "حفظ البيانات" %}</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

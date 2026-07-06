@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "لوحة مدير المحفظة" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "لوحة مدير المحفظة" %}</div>
+      <h1>{{ user.username }}</h1>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <a href="{% url 'portfolios:profile_edit' %}" class="btn-outline" style="width:auto; padding:10px 18px; border-radius:8px;">
+        {% if manager %}{% trans "تعديل بيانات الملف" %}{% else %}{% trans "إكمال بيانات الملف" %}{% endif %}
+      </a>
+      {% if manager %}
+      <a href="{% url 'portfolios:adopt_portfolio' %}" class="btn" style="width:auto; padding:10px 18px;">{% trans "إسناد محفظة جديدة" %}</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if manager %}
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">{% trans "رقم الترخيص" %}</div>
+        <div class="value numeric">{{ manager.license_number }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">{% trans "نسبة رسوم الإدارة" %}</div>
+        <div class="value numeric">{{ manager.management_fee_rate }}%</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">{% trans "سنوات الخبرة" %}</div>
+        <div class="value numeric">{{ manager.years_experience }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">{% trans "المحافظ المُدارة" %}</div>
+        <div class="value numeric">{{ manager.managed_portfolios.count }}</div>
+      </div>
+    </div>
+
+    <div class="section-title">{% trans "المحافظ تحت الإدارة" %}</div>
+    {% if portfolios %}
+    <table class="data-table">
+      <thead><tr><th>{% trans "المالك" %}</th><th>{% trans "الرصيد النقدي" %}</th><th>{% trans "آخر تحديث" %}</th><th></th></tr></thead>
+      <tbody>
+        {% for p in portfolios %}
+        <tr>
+          <td>
+            <a href="{% url 'portfolios:portfolio_detail' p.id %}" style="text-decoration:none; color:var(--gold-bright); font-weight:600;">
+              {{ p.owner.username }}
+            </a>
+          </td>
+          <td class="numeric">{{ p.cash_balance }}</td>
+          <td class="numeric">{{ p.updated_at|date:"Y-m-d" }}</td>
+          <td>
+            <form method="post" action="{% url 'portfolios:release_portfolio' p.id %}" onsubmit="return confirm('{% trans "هل تريد إلغاء إدارتك لهذه المحفظة؟" %}');" style="display:inline">
+              {% csrf_token %}
+              <button type="submit" class="btn-danger-outline">{% trans "إلغاء الإدارة" %}</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+      <div class="icon">📊</div>
+      <p>{% trans "لا توجد محافظ مُسندة إليك حاليًا." %}<br>{% blocktrans %}استخدم زر "إسناد محفظة جديدة" أعلاه لإدارة محفظة متداول عبر اسم مستخدمه.{% endblocktrans %}</p>
+    </div>
+    {% endif %}
+
+  {% else %}
+    <div class="empty-state">
+      <div class="icon">📁</div>
+      <p>{% trans "لم يتم إنشاء ملفك كمدير محفظة بعد. أكمل بياناتك المهنية أولًا لتتمكن من إدارة محافظ العملاء وتنفيذ الأوامر نيابة عنهم." %}</p>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

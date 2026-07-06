@@ -1,0 +1,1052 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-06 03:01+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "بيانات إضافية"
+msgstr "Informations supplémentaires"
+
+msgid "ليس لديك صلاحية الوصول لهذه الصفحة"
+msgstr "Vous n'avez pas l'autorisation d'accéder à cette page"
+
+msgid "نوع الحساب"
+msgstr "Type de compte"
+
+msgid "البريد الإلكتروني"
+msgstr "Adresse e-mail"
+
+msgid "رقم الهاتف"
+msgstr "Numéro de téléphone"
+
+msgid "اسم المستخدم"
+msgstr "Nom d'utilisateur"
+
+msgid "نوع المستند"
+msgstr "Type de document"
+
+msgid "الملف"
+msgstr "Fichier"
+
+msgid "مثال: السجل التجاري، بطاقة الهوية، رخصة السمسرة"
+msgstr "Exemple : registre de commerce, carte d'identité, licence de courtage"
+
+msgid "مدير المنصة"
+msgstr "Administrateur de la plateforme"
+
+msgid "شركة مُدرجة"
+msgstr "Société cotée"
+
+msgid "سمسار"
+msgstr "Courtier"
+
+msgid "مدير محفظة استثمارية"
+msgstr "Gestionnaire de portefeuille"
+
+msgid "متداول / مستثمر"
+msgstr "Trader / Investisseur"
+
+msgid "رقم الهوية الوطنية / السجل التجاري"
+msgstr "Numéro d'identité nationale / registre de commerce"
+
+msgid "تم التحقق من الهوية والمستندات من قبل إدارة المنصة"
+msgstr "Identité et documents vérifiés par l'administration de la plateforme"
+
+msgid "مستخدم"
+msgstr "Utilisateur"
+
+msgid "المستخدمون"
+msgstr "Utilisateurs"
+
+msgid "قيد المراجعة"
+msgstr "En cours d'examen"
+
+msgid "مقبول"
+msgstr "Accepté"
+
+msgid "مرفوض"
+msgstr "Rejeté"
+
+msgid "مستند تحقق"
+msgstr "Document de vérification"
+
+msgid "مستندات التحقق"
+msgstr "Documents de vérification"
+
+msgid "تم رفع المستند بنجاح، بانتظار مراجعة الإدارة."
+msgstr ""
+"Le document a été téléversé avec succès, en attente d'examen par "
+"l'administration."
+
+msgid "رقم الترخيص"
+msgstr "Numéro de licence"
+
+msgid "اسم شركة الوساطة"
+msgstr "Nom de la société de courtage"
+
+msgid "نسبة العمولة %"
+msgstr "Taux de commission %"
+
+msgid "اسم مستخدم العميل (المتداول)"
+msgstr "Nom d'utilisateur du client (trader)"
+
+msgid "لا يوجد متداول بهذا اسم المستخدم."
+msgstr "Aucun trader ne porte ce nom d'utilisateur."
+
+msgid "هذا المتداول مرتبط بك بالفعل كعميل."
+msgstr "Ce trader est déjà lié à vous en tant que client."
+
+msgid "السهم"
+msgstr "Action"
+
+msgid "اختر سهمًا مُدرجًا"
+msgstr "Choisir une action cotée"
+
+msgid "نوع الأمر"
+msgstr "Type d'ordre"
+
+msgid "الكمية (عدد الأسهم)"
+msgstr "Quantité (nombre d'actions)"
+
+msgid "السعر المحدد للسهم الواحد"
+msgstr "Prix fixé par action"
+
+msgid "قيد التفعيل"
+msgstr "En cours d'activation"
+
+msgid "نشط"
+msgstr "Actif"
+
+msgid "موقوف"
+msgstr "Suspendu"
+
+msgid "السماسرة"
+msgstr "Courtiers"
+
+msgid "عميل سمسار"
+msgstr "Client d'un courtier"
+
+msgid "عملاء السماسرة"
+msgstr "Clients des courtiers"
+
+msgid "تم حفظ بيانات ملفك كسمسار بنجاح."
+msgstr ""
+"Les informations de votre profil de courtier ont été enregistrées avec "
+"succès."
+
+#, python-format
+msgid "تم ربط %(username)s كعميل لك بنجاح."
+msgstr "%(username)s a été lié à vous en tant que client avec succès."
+
+msgid "تم تفعيل العميل بنجاح."
+msgstr "Le client a été activé avec succès."
+
+msgid "تم إيقاف العميل بنجاح."
+msgstr "Le client a été suspendu avec succès."
+
+msgid "هذا العميل موقوف حاليًا، لا يمكن تنفيذ أوامر نيابة عنه."
+msgstr ""
+"Ce client est actuellement suspendu, aucun ordre ne peut être exécuté en son"
+" nom."
+
+msgid "تعذّر تقديم الأمر، يرجى مراجعة البيانات المدخلة."
+msgstr ""
+"Impossible de soumettre l'ordre, veuillez vérifier les informations saisies."
+
+#, python-format
+msgid "تمت الموافقة على %(count)s طلب/طلبات وإدراج الأسهم بنجاح."
+msgstr ""
+"%(count)s demande(s) ont été approuvée(s) et les actions cotées avec succès."
+
+#, python-format
+msgid "تم رفض %(count)s طلب/طلبات."
+msgstr "%(count)s demande(s) ont été rejetée(s)."
+
+msgid "الاسم القانوني للشركة"
+msgstr "Dénomination légale de la société"
+
+msgid "الاسم التجاري"
+msgstr "Nom commercial"
+
+msgid "رقم السجل التجاري"
+msgstr "Numéro de registre de commerce"
+
+msgid "القطاع الاقتصادي"
+msgstr "Secteur économique"
+
+msgid "سنة التأسيس"
+msgstr "Année de création"
+
+msgid "المقر الرئيسي"
+msgstr "Siège social"
+
+msgid "الموقع الإلكتروني"
+msgstr "Site web"
+
+msgid "شعار الشركة"
+msgstr "Logo de la société"
+
+msgid "نبذة عن الشركة"
+msgstr "Présentation de la société"
+
+msgid "عدد الأسهم المطلوب إدراجها"
+msgstr "Nombre d'actions à coter"
+
+msgid "السعر المقترح للسهم الواحد"
+msgstr "Prix proposé par action"
+
+msgid "رمز السهم المقترح (اختياري)"
+msgstr "Symbole boursier proposé (facultatif)"
+
+msgid "مسودة"
+msgstr "Brouillon"
+
+msgid "مُدرجة"
+msgstr "Cotée"
+
+msgid "موقوفة"
+msgstr "Suspendue"
+
+msgid "مشطوبة"
+msgstr "Radiée"
+
+msgid "إجمالي الأسهم المُصدرة"
+msgstr "Total des actions émises"
+
+msgid "القيمة الاسمية للسهم"
+msgstr "Valeur nominale de l'action"
+
+msgid "شركة"
+msgstr "Société"
+
+msgid "الشركات"
+msgstr "Sociétés"
+
+msgid "ربع سنوي"
+msgstr "Trimestriel"
+
+msgid "سنوي"
+msgstr "Annuel"
+
+msgid "الفترة المالية"
+msgstr "Période financière"
+
+msgid "مثال: Q1 2026"
+msgstr "Exemple : T1 2026"
+
+msgid "تقرير مالي"
+msgstr "Rapport financier"
+
+msgid "التقارير المالية"
+msgstr "Rapports financiers"
+
+msgid "مُقدَّم"
+msgstr "Soumis"
+
+msgid "قيد الدراسة"
+msgstr "À l'étude"
+
+msgid "موافق عليه"
+msgstr "Approuvé"
+
+msgid "رمز السهم المقترح (Ticker)"
+msgstr "Symbole boursier proposé (Ticker)"
+
+msgid ""
+"حروف إنجليزية و/أو أرقام فقط، من حرفين إلى 6 أحرف (مثال: BZRK). إن تُرك "
+"فارغًا سيولّده النظام تلقائيًا."
+msgstr ""
+"Lettres anglaises et/ou chiffres uniquement, de 2 à 6 caractères (exemple : "
+"BZRK). Si laissé vide, il sera généré automatiquement par le système."
+
+msgid "استخدم حروفًا إنجليزية كبيرة و/أو أرقامًا فقط (2-6 خانات)."
+msgstr ""
+"Utilisez uniquement des lettres majuscules anglaises et/ou des chiffres (2 à"
+" 6 caractères)."
+
+msgid "طلب إدراج"
+msgstr "Demande de cotation"
+
+msgid "طلبات الإدراج"
+msgstr "Demandes de cotation"
+
+msgid "تم حفظ بيانات الشركة بنجاح."
+msgstr "Les informations de la société ont été enregistrées avec succès."
+
+msgid "تم إرسال طلب الإدراج بنجاح، بانتظار مراجعة إدارة المنصة."
+msgstr ""
+"La demande de cotation a été envoyée avec succès, en attente d'examen par "
+"l'administration de la plateforme."
+
+msgid "يجب أن تكون الكمية أكبر من صفر."
+msgstr "La quantité doit être supérieure à zéro."
+
+msgid "يجب أن يكون السعر أكبر من صفر."
+msgstr "Le prix doit être supérieur à zéro."
+
+msgid "الرمز"
+msgstr "Symbole"
+
+msgid "سهم"
+msgstr "Action"
+
+msgid "الأسهم"
+msgstr "Actions"
+
+msgid "سجل سعري"
+msgstr "Historique des prix"
+
+msgid "السجلات السعرية"
+msgstr "Historiques des prix"
+
+msgid "شراء"
+msgstr "Achat"
+
+msgid "بيع"
+msgstr "Vente"
+
+msgid "مفتوح"
+msgstr "Ouvert"
+
+msgid "منفَّذ جزئيًا"
+msgstr "Partiellement exécuté"
+
+msgid "منفَّذ بالكامل"
+msgstr "Entièrement exécuté"
+
+msgid "مُلغى"
+msgstr "Annulé"
+
+msgid "أمر تداول"
+msgstr "Ordre de trading"
+
+msgid "أوامر التداول"
+msgstr "Ordres de trading"
+
+msgid "صفقة"
+msgstr "Transaction"
+
+msgid "الصفقات"
+msgstr "Transactions"
+
+#, python-format
+msgid ""
+"الرصيد النقدي في محفظة %(username)s غير كافٍ لتغطية قيمة هذا الأمر "
+"(%(total)s مقابل رصيد متاح %(balance)s)."
+msgstr ""
+"Le solde en espèces du portefeuille de %(username)s est insuffisant pour "
+"couvrir cet ordre (%(total)s contre un solde disponible de %(balance)s)."
+
+#, python-format
+msgid ""
+"لا تملك محفظة %(username)s عددًا كافيًا من أسهم %(symbol)s لتنفيذ هذا الأمر "
+"(المتاح حاليًا: %(available)s)."
+msgstr ""
+"Le portefeuille de %(username)s ne détient pas assez d'actions %(symbol)s "
+"pour exécuter cet ordre (disponible actuellement : %(available)s)."
+
+#, python-format
+msgid "نيابة عن %(name)s"
+msgstr "au nom de %(name)s"
+
+#, python-format
+msgid ""
+"تم تنفيذ أمر %(verb)s %(subject)s بالكامل فورًا بسعر السوق المتاح (%(price)s"
+" للسهم)."
+msgstr ""
+"L'ordre %(verb)s %(subject)s a été entièrement exécuté immédiatement au prix"
+" du marché disponible (%(price)s par action)."
+
+#, python-format
+msgid ""
+"تم تنفيذ %(filled)s من أصل %(total)s سهم في أمر %(verb)s %(subject)s فورًا، "
+"والباقي أُدرج في دفتر الأوامر بانتظار طرف مقابل."
+msgstr ""
+"%(filled)s actions sur %(total)s ont été exécutées immédiatement dans "
+"l'ordre %(verb)s %(subject)s, le reste a été inscrit au carnet d'ordres en "
+"attente d'une contrepartie."
+
+#, python-format
+msgid ""
+"تعذّر تنفيذ أمر %(verb)s %(subject)s: لم يعد الرصيد أو الحيازة كافيَين وقت "
+"المطابقة، فأُلغي الأمر."
+msgstr ""
+"Impossible d'exécuter l'ordre %(verb)s %(subject)s : le solde ou la position"
+" n'était plus suffisant au moment de l'appariement, l'ordre a donc été "
+"annulé."
+
+#, python-format
+msgid ""
+"تم إدخال أمر %(verb)s %(subject)s في دفتر الأوامر بنجاح، بانتظار طرف مقابل "
+"مطابق."
+msgstr ""
+"L'ordre %(verb)s %(subject)s a été inscrit au carnet d'ordres avec succès, "
+"en attente d'une contrepartie correspondante."
+
+msgid "تم إلغاء الأمر بنجاح."
+msgstr "L'ordre a été annulé avec succès."
+
+msgid "لا يمكن إلغاء هذا الأمر."
+msgstr "Cet ordre ne peut pas être annulé."
+
+msgid "نسبة رسوم الإدارة %"
+msgstr "Taux de frais de gestion %"
+
+msgid "سنوات الخبرة"
+msgstr "Années d'expérience"
+
+msgid "اسم مستخدم صاحب المحفظة (المتداول)"
+msgstr "Nom d'utilisateur du titulaire du portefeuille (trader)"
+
+#, python-format
+msgid "محفظة %(username)s مُدارة بالفعل من طرف مدير محفظة آخر."
+msgstr ""
+"Le portefeuille de %(username)s est déjà géré par un autre gestionnaire de "
+"portefeuille."
+
+msgid "مدير محفظة"
+msgstr "Gestionnaire de portefeuille"
+
+msgid "مديرو المحافظ"
+msgstr "Gestionnaires de portefeuille"
+
+msgid "محفظة استثمارية"
+msgstr "Portefeuille d'investissement"
+
+msgid "المحافظ الاستثمارية"
+msgstr "Portefeuilles d'investissement"
+
+msgid "حيازة سهم"
+msgstr "Position en actions"
+
+msgid "حيازات الأسهم"
+msgstr "Positions en actions"
+
+msgid "تم حفظ بيانات ملفك كمدير محفظة بنجاح."
+msgstr ""
+"Les informations de votre profil de gestionnaire de portefeuille ont été "
+"enregistrées avec succès."
+
+#, python-format
+msgid "تم إسناد محفظة %(username)s إليك بنجاح."
+msgstr "Le portefeuille de %(username)s vous a été attribué avec succès."
+
+#, python-format
+msgid "تم إلغاء إدارتك لمحفظة %(username)s."
+msgstr "Votre gestion du portefeuille de %(username)s a été annulée."
+
+msgid "لوحة إدارة المنصة"
+msgstr "Tableau de bord d'administration de la plateforme"
+
+msgid "إدارة المنصة"
+msgstr "Administration de la plateforme"
+
+#, python-format
+msgid "مرحبًا، %(username)s"
+msgstr "Bonjour, %(username)s"
+
+msgid "فتح لوحة إدارة Django"
+msgstr "Ouvrir le panneau d'administration Django"
+
+msgid "هذه لوحة تحكم مبدئية للمرحلة الأولى."
+msgstr "Ceci est un tableau de bord préliminaire pour la première phase."
+
+msgid ""
+"استخدم لوحة إدارة Django لمراجعة طلبات الإدراج، المستخدمين، والمستندات حتى "
+"نبني واجهات مخصصة في المراحل القادمة."
+msgstr ""
+"Utilisez le panneau d'administration Django pour examiner les demandes de "
+"cotation, les utilisateurs et les documents en attendant que des interfaces "
+"dédiées soient développées dans les prochaines phases."
+
+msgid "مستنداتي"
+msgstr "Mes documents"
+
+msgid "التحقق من الهوية"
+msgstr "Vérification d'identité"
+
+msgid "رفع مستند جديد"
+msgstr "Téléverser un nouveau document"
+
+msgid "رفع المستند"
+msgstr "Téléverser le document"
+
+msgid "المستندات المرفوعة"
+msgstr "Documents téléversés"
+
+msgid "النوع"
+msgstr "Type"
+
+msgid "الحالة"
+msgstr "Statut"
+
+msgid "تاريخ الرفع"
+msgstr "Date de téléversement"
+
+msgid "ملاحظة المراجع"
+msgstr "Remarque du réviseur"
+
+msgid "لم تقم برفع أي مستندات بعد."
+msgstr "Vous n'avez encore téléversé aucun document."
+
+msgid "تسجيل الدخول — بورصة الأسهم"
+msgstr "Connexion — Bourse des actions"
+
+msgid "بوابة الدخول"
+msgstr "Portail de connexion"
+
+msgid "مرحبًا بعودتك"
+msgstr "Bon retour parmi nous"
+
+msgid "سجّل الدخول لمتابعة محفظتك أو إدارة نشاطك في السوق"
+msgstr ""
+"Connectez-vous pour suivre votre portefeuille ou gérer votre activité sur le"
+" marché"
+
+msgid "كلمة المرور"
+msgstr "Mot de passe"
+
+msgid "تسجيل الدخول"
+msgstr "Se connecter"
+
+msgid "ليس لديك حساب؟"
+msgstr "Vous n'avez pas de compte ?"
+
+msgid "أنشئ حسابًا جديدًا"
+msgstr "Créer un nouveau compte"
+
+msgid "إنشاء حساب — بورصة الأسهم"
+msgstr "Créer un compte — Bourse des actions"
+
+msgid "حساب جديد"
+msgstr "Nouveau compte"
+
+msgid "انضم إلى المنصة"
+msgstr "Rejoignez la plateforme"
+
+msgid "اختر نوع الحساب الذي يناسب نشاطك في السوق"
+msgstr "Choisissez le type de compte adapté à votre activité sur le marché"
+
+msgid "رقم الهاتف (اختياري)"
+msgstr "Numéro de téléphone (facultatif)"
+
+msgid "تأكيد كلمة المرور"
+msgstr "Confirmer le mot de passe"
+
+msgid "إنشاء الحساب"
+msgstr "Créer le compte"
+
+msgid "لديك حساب بالفعل؟"
+msgstr "Vous avez déjà un compte ?"
+
+msgid "بورصة الأسهم"
+msgstr "Bourse des actions"
+
+msgid "لا توجد أسهم مُدرجة في السوق بعد"
+msgstr "Aucune action n'est encore cotée sur le marché"
+
+msgid "تسجيل الخروج"
+msgstr "Se déconnecter"
+
+msgid "ربط عميل جديد"
+msgstr "Lier un nouveau client"
+
+msgid "عملاء السمسار"
+msgstr "Clients du courtier"
+
+msgid "رجوع للوحة"
+msgstr "Retour au tableau de bord"
+
+msgid ""
+"أدخل اسم مستخدم متداول مسجَّل بالفعل على المنصة لربطه كعميل، بحيث تتمكن من "
+"الاطلاع على محفظته وتنفيذ أوامر شراء/بيع نيابة عنه."
+msgstr ""
+"Saisissez le nom d'utilisateur d'un trader déjà inscrit sur la plateforme "
+"pour le lier en tant que client, afin de pouvoir consulter son portefeuille "
+"et exécuter des ordres d'achat/vente en son nom."
+
+msgid "ربط العميل"
+msgstr "Lier le client"
+
+#, python-format
+msgid "العميل %(username)s"
+msgstr "Client %(username)s"
+
+msgid "ملف العميل"
+msgstr "Profil du client"
+
+msgid "حالة الربط"
+msgstr "Statut de la liaison"
+
+msgid "الرصيد النقدي"
+msgstr "Solde en espèces"
+
+msgid "عدد الحيازات"
+msgstr "Nombre de positions"
+
+msgid "تاريخ الربط"
+msgstr "Date de liaison"
+
+msgid "حيازات المحفظة"
+msgstr "Positions du portefeuille"
+
+msgid "الكمية"
+msgstr "Quantité"
+
+msgid "متوسط سعر الشراء"
+msgstr "Prix d'achat moyen"
+
+msgid "لا توجد حيازات أسهم في محفظة هذا العميل حاليًا."
+msgstr ""
+"Aucune position en actions dans le portefeuille de ce client actuellement."
+
+msgid "تنفيذ أمر نيابة عن العميل"
+msgstr "Exécuter un ordre au nom du client"
+
+msgid "تنفيذ الأمر"
+msgstr "Exécuter l'ordre"
+
+msgid ""
+"هذا العميل موقوف حاليًا، لا يمكن تنفيذ أوامر نيابة عنه إلا بعد إعادة تفعيله "
+"من لوحة التحكم."
+msgstr ""
+"Ce client est actuellement suspendu ; aucun ordre ne peut être exécuté en "
+"son nom tant qu'il n'est pas réactivé depuis le tableau de bord."
+
+msgid "آخر الأوامر المنفَّذة عبرك لهذا العميل"
+msgstr "Derniers ordres exécutés par vous pour ce client"
+
+msgid "المنفَّذ"
+msgstr "Exécuté"
+
+msgid "السعر"
+msgstr "Prix"
+
+msgid "التاريخ"
+msgstr "Date"
+
+msgid "لم تنفِّذ أي أمر نيابة عن هذا العميل بعد."
+msgstr "Vous n'avez encore exécuté aucun ordre au nom de ce client."
+
+msgid "لوحة تحكم السمسار"
+msgstr "Tableau de bord du courtier"
+
+msgid "لوحة السمسار"
+msgstr "Tableau de bord courtier"
+
+msgid "أكمل ملفك المهني"
+msgstr "Complétez votre profil professionnel"
+
+msgid "تعديل بيانات الملف"
+msgstr "Modifier les informations du profil"
+
+msgid "إكمال بيانات الملف"
+msgstr "Compléter les informations du profil"
+
+msgid "حالة الترخيص"
+msgstr "Statut de la licence"
+
+msgid "نسبة العمولة"
+msgstr "Taux de commission"
+
+msgid "عدد العملاء"
+msgstr "Nombre de clients"
+
+msgid "العملاء"
+msgstr "Clients"
+
+msgid "العميل"
+msgstr "Client"
+
+msgid "إيقاف"
+msgstr "Suspendre"
+
+msgid "تفعيل"
+msgstr "Activer"
+
+msgid "لا يوجد عملاء مرتبطون بك بعد."
+msgstr "Aucun client n'est encore lié à vous."
+
+msgid "استخدم زر \"ربط عميل جديد\" أعلاه لربط أول عميل عبر اسم مستخدمه."
+msgstr ""
+"Utilisez le bouton « Lier un nouveau client » ci-dessus pour lier votre "
+"premier client via son nom d'utilisateur."
+
+msgid ""
+"لم يتم إنشاء ملفك كسمسار بعد. أكمل بياناتك المهنية أولًا لتتمكن من ربط "
+"العملاء وتنفيذ الأوامر نيابة عنهم."
+msgstr ""
+"Votre profil de courtier n'a pas encore été créé. Complétez d'abord vos "
+"informations professionnelles pour pouvoir lier des clients et exécuter des "
+"ordres en leur nom."
+
+msgid "بيانات السمسار"
+msgstr "Informations du courtier"
+
+msgid "ملف السمسار"
+msgstr "Profil du courtier"
+
+msgid "حفظ البيانات"
+msgstr "Enregistrer les informations"
+
+msgid "لوحة تحكم الشركة"
+msgstr "Tableau de bord de la société"
+
+msgid "لوحة الشركة"
+msgstr "Tableau de bord société"
+
+msgid "أكمل ملف شركتك"
+msgstr "Complétez le profil de votre société"
+
+msgid "تعديل بيانات الشركة"
+msgstr "Modifier les informations de la société"
+
+msgid "إكمال بيانات الشركة"
+msgstr "Compléter les informations de la société"
+
+msgid "تقديم طلب إدراج"
+msgstr "Soumettre une demande de cotation"
+
+msgid "حالة الإدراج"
+msgstr "Statut de cotation"
+
+msgid "القطاع"
+msgstr "Secteur"
+
+msgid "الأسهم المطلوبة"
+msgstr "Actions demandées"
+
+msgid "السعر المقترح"
+msgstr "Prix proposé"
+
+msgid "ملاحظة الإدارة"
+msgstr "Remarque de l'administration"
+
+msgid "تاريخ التقديم"
+msgstr "Date de soumission"
+
+msgid "لم تقدّم أي طلب إدراج بعد."
+msgstr "Vous n'avez encore soumis aucune demande de cotation."
+
+msgid "التقارير المالية المنشورة"
+msgstr "Rapports financiers publiés"
+
+msgid "الفترة"
+msgstr "Période"
+
+msgid "الإيرادات"
+msgstr "Revenus"
+
+msgid "صافي الربح"
+msgstr "Bénéfice net"
+
+msgid "تاريخ النشر"
+msgstr "Date de publication"
+
+msgid "لا توجد تقارير مالية منشورة بعد. ستتمكن من رفعها في المرحلة القادمة."
+msgstr ""
+"Aucun rapport financier n'a encore été publié. Vous pourrez en téléverser "
+"lors de la prochaine phase."
+
+msgid ""
+"لم يتم إنشاء ملف الشركة بعد. سيتم إضافة نموذج إكمال البيانات في المرحلة "
+"التالية من التطوير."
+msgstr ""
+"Le profil de la société n'a pas encore été créé. Un formulaire de saisie "
+"sera ajouté lors de la prochaine phase de développement."
+
+msgid "طلب إدراج جديد"
+msgstr "Nouvelle demande de cotation"
+
+msgid ""
+"سيتم مراجعة طلبك من قبل إدارة المنصة. عند الموافقة، سيُنشأ سهم جديد للشركة "
+"في السوق تلقائيًا بالسعر المقترح."
+msgstr ""
+"Votre demande sera examinée par l'administration de la plateforme. Une fois "
+"approuvée, une nouvelle action sera automatiquement créée pour la société "
+"sur le marché au prix proposé."
+
+msgid ""
+"حروف إنجليزية و/أو أرقام، من حرفين إلى 6 (مثال: BZRK). إن تُرك فارغًا، "
+"سيولّده النظام تلقائيًا من اسم الشركة."
+msgstr ""
+"Lettres anglaises et/ou chiffres, de 2 à 6 caractères (exemple : BZRK). Si "
+"laissé vide, il sera généré automatiquement à partir du nom de la société."
+
+msgid "إرسال الطلب"
+msgstr "Envoyer la demande"
+
+msgid "بيانات الشركة"
+msgstr "Informations de la société"
+
+msgid "ملف الشركة"
+msgstr "Profil de la société"
+
+msgid "السوق"
+msgstr "Marché"
+
+msgid "نظرة عامة على السوق"
+msgstr "Aperçu du marché"
+
+msgid "أوامري"
+msgstr "Mes ordres"
+
+msgid "الرصيد النقدي في المحفظة"
+msgstr "Solde en espèces du portefeuille"
+
+msgid "عدد الأسهم المتداولة"
+msgstr "Nombre d'actions échangées"
+
+msgid "الأكثر ارتفاعًا اليوم"
+msgstr "Plus fortes hausses du jour"
+
+msgid "لا توجد بيانات كافية بعد"
+msgstr "Pas encore assez de données"
+
+msgid "الأكثر انخفاضًا اليوم"
+msgstr "Plus fortes baisses du jour"
+
+msgid "الأسهم المُدرجة"
+msgstr "Actions cotées"
+
+msgid "الشركة"
+msgstr "Société"
+
+msgid "السعر الحالي"
+msgstr "Prix actuel"
+
+msgid "التغيّر"
+msgstr "Variation"
+
+msgid "حجم التداول اليوم"
+msgstr "Volume échangé aujourd'hui"
+
+msgid "لا توجد أسهم مُدرجة في السوق بعد."
+msgstr "Aucune action n'est encore cotée sur le marché."
+
+msgid "ستظهر هنا فور موافقة إدارة المنصة على أول طلبات الإدراج."
+msgstr ""
+"Elles apparaîtront ici dès que l'administration de la plateforme aura "
+"approuvé les premières demandes de cotation."
+
+msgid "دفتر أوامري"
+msgstr "Mon carnet d'ordres"
+
+msgid "أوامر التداول الخاصة بي"
+msgstr "Mes ordres de trading"
+
+msgid "هل تريد إلغاء هذا الأمر؟"
+msgstr "Voulez-vous annuler cet ordre ?"
+
+msgid "إلغاء"
+msgstr "Annuler"
+
+msgid "لم تقدّم أي أوامر تداول بعد."
+msgstr "Vous n'avez encore soumis aucun ordre de trading."
+
+msgid "توجّه إلى صفحة أي سهم مُدرج لتقديم أول أمر شراء أو بيع."
+msgstr ""
+"Rendez-vous sur la page d'une action cotée pour soumettre votre premier "
+"ordre d'achat ou de vente."
+
+msgid "ورقة السهم"
+msgstr "Fiche de l'action"
+
+#, python-format
+msgid "مقابل إغلاق أمس (%(prev_close)s)"
+msgstr "par rapport à la clôture d'hier (%(prev_close)s)"
+
+msgid "أعلى سعر اليوم"
+msgstr "Plus haut du jour"
+
+msgid "أدنى سعر اليوم"
+msgstr "Plus bas du jour"
+
+#, python-format
+msgid "حركة السعر (آخر %(days)s يوم متاح)"
+msgstr "Évolution du prix (derniers %(days)s jours disponibles)"
+
+#, python-format
+msgid "أدنى: %(v)s"
+msgstr "Plus bas : %(v)s"
+
+#, python-format
+msgid "أعلى: %(v)s"
+msgstr "Plus haut : %(v)s"
+
+msgid "لا يوجد سجل سعري كافٍ بعد لرسم مخطط الحركة."
+msgstr ""
+"L'historique des prix n'est pas encore suffisant pour tracer le graphique."
+
+msgid "تقديم أمر تداول"
+msgstr "Soumettre un ordre de trading"
+
+#, python-format
+msgid ""
+"رصيدك الحالي من هذا السهم: <span class=\"numeric\">%(qty)s</span> سهم\n"
+"      بمتوسط سعر شراء <span class=\"numeric\">%(avg)s</span>"
+msgstr ""
+"Votre position actuelle sur cette action : <span class=\"numeric\">%(qty)s</span> actions\n"
+"      à un prix d'achat moyen de <span class=\"numeric\">%(avg)s</span>"
+
+msgid "إرسال الأمر"
+msgstr "Envoyer l'ordre"
+
+msgid "أوامري المفتوحة على هذا السهم"
+msgstr "Mes ordres ouverts sur cette action"
+
+msgid ""
+"تقديم أوامر الشراء والبيع من صفحة السهم مباشرة متاح لحسابات المتداولين فقط."
+msgstr ""
+"La soumission d'ordres d'achat et de vente directement depuis la page de "
+"l'action est réservée aux comptes de traders."
+
+#, python-format
+msgid ""
+"لتنفيذ أمر على هذا السهم نيابة عن أحد عملائك، توجّه إلى <a "
+"href=\"%(broker_dash_url)s\" style=\"color:var(--gold-bright);\">لوحة "
+"السمسار</a> واختر العميل المعني."
+msgstr ""
+"Pour exécuter un ordre sur cette action au nom d'un de vos clients, rendez-"
+"vous sur le <a href=\"%(broker_dash_url)s\" style=\"color:var(--gold-"
+"bright);\">tableau de bord courtier</a> et sélectionnez le client concerné."
+
+#, python-format
+msgid ""
+"لتنفيذ أمر على هذا السهم نيابة عن محفظة تديرها، توجّه إلى <a "
+"href=\"%(pm_dash_url)s\" style=\"color:var(--gold-bright);\">لوحة مدير "
+"المحفظة</a> واختر المحفظة المعنية."
+msgstr ""
+"Pour exécuter un ordre sur cette action au nom d'un portefeuille que vous "
+"gérez, rendez-vous sur le <a href=\"%(pm_dash_url)s\" "
+"style=\"color:var(--gold-bright);\">tableau de bord gestionnaire de "
+"portefeuille</a> et sélectionnez le portefeuille concerné."
+
+msgid "تقديم أوامر الشراء والبيع متاح حاليًا لحسابات المتداولين مباشرة."
+msgstr ""
+"La soumission d'ordres d'achat et de vente est actuellement réservée "
+"directement aux comptes de traders."
+
+msgid "دفتر الأوامر (Order Book)"
+msgstr "Carnet d'ordres (Order Book)"
+
+msgid "أوامر الشراء"
+msgstr "Ordres d'achat"
+
+msgid "لا توجد أوامر شراء مفتوحة حاليًا"
+msgstr "Aucun ordre d'achat ouvert actuellement"
+
+msgid "أوامر البيع"
+msgstr "Ordres de vente"
+
+msgid "لا توجد أوامر بيع مفتوحة حاليًا"
+msgstr "Aucun ordre de vente ouvert actuellement"
+
+msgid "آخر الصفقات المُنفَّذة"
+msgstr "Dernières transactions exécutées"
+
+msgid "الوقت"
+msgstr "Heure"
+
+msgid "لا توجد صفقات مُنفَّذة على هذا السهم بعد."
+msgstr "Aucune transaction n'a encore été exécutée sur cette action."
+
+msgid "سيبدأ التنفيذ الفعلي فور تشغيل محرك المطابقة في مرحلة قادمة."
+msgstr ""
+"L'exécution effective débutera dès la mise en service du moteur "
+"d'appariement lors d'une prochaine phase."
+
+msgid "إسناد محفظة جديدة"
+msgstr "Attribuer un nouveau portefeuille"
+
+msgid "إدارة المحافظ"
+msgstr "Gestion des portefeuilles"
+
+msgid ""
+"أدخل اسم مستخدم متداول مسجَّل بالفعل على المنصة، ولا تدير محفظته حاليًا جهة "
+"أخرى، لتصبح مسؤولًا عن إدارتها وتنفيذ أوامر شراء/بيع نيابة عنه."
+msgstr ""
+"Saisissez le nom d'utilisateur d'un trader déjà inscrit sur la plateforme, "
+"dont le portefeuille n'est actuellement géré par personne d'autre, pour en "
+"devenir responsable et exécuter des ordres d'achat/vente en son nom."
+
+msgid "إسناد المحفظة"
+msgstr "Attribuer le portefeuille"
+
+msgid "لوحة مدير المحفظة"
+msgstr "Tableau de bord gestionnaire de portefeuille"
+
+msgid "نسبة رسوم الإدارة"
+msgstr "Taux de frais de gestion"
+
+msgid "المحافظ المُدارة"
+msgstr "Portefeuilles gérés"
+
+msgid "المحافظ تحت الإدارة"
+msgstr "Portefeuilles sous gestion"
+
+msgid "المالك"
+msgstr "Titulaire"
+
+msgid "آخر تحديث"
+msgstr "Dernière mise à jour"
+
+msgid "هل تريد إلغاء إدارتك لهذه المحفظة؟"
+msgstr "Voulez-vous annuler votre gestion de ce portefeuille ?"
+
+msgid "إلغاء الإدارة"
+msgstr "Annuler la gestion"
+
+msgid "لا توجد محافظ مُسندة إليك حاليًا."
+msgstr "Aucun portefeuille ne vous est actuellement attribué."
+
+msgid "استخدم زر \"إسناد محفظة جديدة\" أعلاه لإدارة محفظة متداول عبر اسم مستخدمه."
+msgstr ""
+"Utilisez le bouton « Attribuer un nouveau portefeuille » ci-dessus pour "
+"gérer le portefeuille d'un trader via son nom d'utilisateur."
+
+msgid ""
+"لم يتم إنشاء ملفك كمدير محفظة بعد. أكمل بياناتك المهنية أولًا لتتمكن من "
+"إدارة محافظ العملاء وتنفيذ الأوامر نيابة عنهم."
+msgstr ""
+"Votre profil de gestionnaire de portefeuille n'a pas encore été créé. "
+"Complétez d'abord vos informations professionnelles pour pouvoir gérer les "
+"portefeuilles des clients et exécuter des ordres en leur nom."
+
+#, python-format
+msgid "محفظة %(owner)s"
+msgstr "Portefeuille de %(owner)s"
+
+msgid "محفظة تحت الإدارة"
+msgstr "Portefeuille sous gestion"
+
+msgid "لا توجد حيازات أسهم في هذه المحفظة حاليًا."
+msgstr "Aucune position en actions dans ce portefeuille actuellement."
+
+msgid "تنفيذ أمر نيابة عن صاحب المحفظة"
+msgstr "Exécuter un ordre au nom du titulaire du portefeuille"
+
+msgid "آخر أوامر هذه المحفظة"
+msgstr "Derniers ordres de ce portefeuille"
+
+msgid "لم يُنفَّذ أي أمر لهذه المحفظة بعد."
+msgstr "Aucun ordre n'a encore été exécuté pour ce portefeuille."
+
+msgid "بيانات مدير المحفظة"
+msgstr "Informations du gestionnaire de portefeuille"
+
+msgid "ملف مدير المحفظة"
+msgstr "Profil du gestionnaire de portefeuille"

@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% blocktrans with owner=portfolio.owner.username %}محفظة {{ owner }}{% endblocktrans %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "محفظة تحت الإدارة" %}</div>
+      <h1>{{ portfolio.owner.username }}</h1>
+    </div>
+    <a href="{% url 'portfolios:dashboard' %}" class="btn-outline" style="width:auto; padding:9px 18px;">{% trans "رجوع للوحة" %}</a>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="label">{% trans "الرصيد النقدي" %}</div>
+      <div class="value numeric">{{ portfolio.cash_balance }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">{% trans "عدد الحيازات" %}</div>
+      <div class="value numeric">{{ holdings.count }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">{% trans "آخر تحديث" %}</div>
+      <div class="value numeric" style="font-size:16px;">{{ portfolio.updated_at|date:"Y-m-d" }}</div>
+    </div>
+  </div>
+
+  <div class="section-title">{% trans "حيازات المحفظة" %}</div>
+  {% if holdings %}
+  <table class="data-table">
+    <thead><tr><th>{% trans "السهم" %}</th><th>{% trans "الكمية" %}</th><th>{% trans "متوسط سعر الشراء" %}</th></tr></thead>
+    <tbody>
+      {% for h in holdings %}
+      <tr>
+        <td>
+          <a href="{% url 'market:stock_detail' h.stock.symbol %}" style="text-decoration:none; color:var(--gold-bright); font-weight:600;">
+            {{ h.stock.symbol }}
+          </a>
+        </td>
+        <td class="numeric">{{ h.quantity }}</td>
+        <td class="numeric">{{ h.average_buy_price }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty-state">
+    <div class="icon">📦</div>
+    <p>{% trans "لا توجد حيازات أسهم في هذه المحفظة حاليًا." %}</p>
+  </div>
+  {% endif %}
+
+  <div class="section-title">{% trans "تنفيذ أمر نيابة عن صاحب المحفظة" %}</div>
+  <div class="order-form-card">
+    <form method="post" action="{% url 'portfolios:place_order_for_portfolio' portfolio.id %}">
+      {% csrf_token %}
+      <div class="order-form-grid">
+        <div class="field" style="margin-bottom:0;">
+          <label for="{{ form.stock.id_for_label }}">{{ form.stock.label }}</label>
+          {{ form.stock }}
+          {{ form.stock.errors }}
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label for="{{ form.order_type.id_for_label }}">{{ form.order_type.label }}</label>
+          {{ form.order_type }}
+          {{ form.order_type.errors }}
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label for="{{ form.quantity.id_for_label }}">{{ form.quantity.label }}</label>
+          {{ form.quantity }}
+          {{ form.quantity.errors }}
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label for="{{ form.price_per_share.id_for_label }}">{{ form.price_per_share.label }}</label>
+          {{ form.price_per_share }}
+          {{ form.price_per_share.errors }}
+        </div>
+        <button type="submit" class="btn">{% trans "تنفيذ الأمر" %}</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="section-title">{% trans "آخر أوامر هذه المحفظة" %}</div>
+  {% if recent_orders %}
+  <table class="data-table">
+    <thead>
+      <tr><th>{% trans "السهم" %}</th><th>{% trans "النوع" %}</th><th>{% trans "الكمية" %}</th><th>{% trans "المنفَّذ" %}</th><th>{% trans "السعر" %}</th><th>{% trans "الحالة" %}</th><th>{% trans "التاريخ" %}</th></tr>
+    </thead>
+    <tbody>
+      {% for order in recent_orders %}
+      <tr>
+        <td class="numeric">{{ order.stock.symbol }}</td>
+        <td class="{% if order.order_type == 'buy' %}up{% else %}down{% endif %}">{{ order.get_order_type_display }}</td>
+        <td class="numeric">{{ order.quantity }}</td>
+        <td class="numeric">{{ order.filled_quantity }}</td>
+        <td class="numeric">{{ order.price_per_share }}</td>
+        <td><span class="badge {{ order.status }}">{{ order.get_status_display }}</span></td>
+        <td class="numeric">{{ order.created_at|date:"Y-m-d H:i" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty-state">
+    <div class="icon">🧾</div>
+    <p>{% trans "لم يُنفَّذ أي أمر لهذه المحفظة بعد." %}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

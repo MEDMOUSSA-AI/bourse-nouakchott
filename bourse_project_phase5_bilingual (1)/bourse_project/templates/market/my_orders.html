@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "أوامري" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "دفتر أوامري" %}</div>
+      <h1>{% trans "أوامر التداول الخاصة بي" %}</h1>
+    </div>
+    <a href="{% url 'market:dashboard' %}" class="btn-outline" style="width:auto; padding:9px 18px;">{% trans "السوق" %}</a>
+  </div>
+
+  {% if orders %}
+  <table class="data-table">
+    <thead>
+      <tr><th>{% trans "السهم" %}</th><th>{% trans "النوع" %}</th><th>{% trans "الكمية" %}</th><th>{% trans "المنفَّذ" %}</th><th>{% trans "السعر" %}</th><th>{% trans "الحالة" %}</th><th>{% trans "التاريخ" %}</th><th></th></tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr>
+        <td class="numeric"><a href="{% url 'market:stock_detail' order.stock.symbol %}" style="text-decoration:none; color:var(--gold-bright); font-weight:600;">{{ order.stock.symbol }}</a></td>
+        <td class="{% if order.order_type == 'buy' %}up{% else %}down{% endif %}">{{ order.get_order_type_display }}</td>
+        <td class="numeric">{{ order.quantity }}</td>
+        <td class="numeric">{{ order.filled_quantity }}</td>
+        <td class="numeric">{{ order.price_per_share }}</td>
+        <td><span class="badge {{ order.status }}">{{ order.get_status_display }}</span></td>
+        <td class="numeric">{{ order.created_at|date:"Y-m-d H:i" }}</td>
+        <td>
+          {% if order.status == "open" or order.status == "partially_filled" %}
+          <form method="post" action="{% url 'market:cancel_order' order.id %}" onsubmit="return confirm('{% trans "هل تريد إلغاء هذا الأمر؟" %}');">
+            {% csrf_token %}
+            <button type="submit" class="btn-danger-outline">{% trans "إلغاء" %}</button>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty-state">
+    <div class="icon">🧾</div>
+    <p>{% trans "لم تقدّم أي أوامر تداول بعد." %}<br>{% trans "توجّه إلى صفحة أي سهم مُدرج لتقديم أول أمر شراء أو بيع." %}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

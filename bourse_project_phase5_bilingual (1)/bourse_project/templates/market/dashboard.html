@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "السوق" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "نظرة عامة على السوق" %}</div>
+      <h1>{% blocktrans with username=user.username %}مرحبًا، {{ username }}{% endblocktrans %}</h1>
+    </div>
+    <a href="{% url 'market:my_orders' %}" class="btn-outline" style="width:auto; padding:9px 18px;">{% trans "أوامري" %}</a>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="label">{% trans "الرصيد النقدي في المحفظة" %}</div>
+      <div class="value numeric">{% if portfolio %}{{ portfolio.cash_balance }}{% else %}0.00{% endif %}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">{% trans "عدد الأسهم المتداولة" %}</div>
+      <div class="value numeric">{{ stocks.count }}</div>
+    </div>
+  </div>
+
+  {% if top_gainers or top_losers %}
+  <div class="movers-grid">
+    <div class="movers-col">
+      <div class="movers-title">{% trans "الأكثر ارتفاعًا اليوم" %}</div>
+      {% if top_gainers %}
+        {% for stock in top_gainers %}
+        <a href="{% url 'market:stock_detail' stock.symbol %}" class="movers-row">
+          <span class="movers-sym">{{ stock.symbol }}</span>
+          <span class="movers-change up">▲ {{ stock.change_percent }}%</span>
+        </a>
+        {% endfor %}
+      {% else %}
+        <div class="movers-row" style="border:none; color:var(--muted);">{% trans "لا توجد بيانات كافية بعد" %}</div>
+      {% endif %}
+    </div>
+    <div class="movers-col">
+      <div class="movers-title">{% trans "الأكثر انخفاضًا اليوم" %}</div>
+      {% if top_losers %}
+        {% for stock in top_losers %}
+        <a href="{% url 'market:stock_detail' stock.symbol %}" class="movers-row">
+          <span class="movers-sym">{{ stock.symbol }}</span>
+          <span class="movers-change down">▼ {{ stock.change_percent }}%</span>
+        </a>
+        {% endfor %}
+      {% else %}
+        <div class="movers-row" style="border:none; color:var(--muted);">{% trans "لا توجد بيانات كافية بعد" %}</div>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="section-title">{% trans "الأسهم المُدرجة" %}</div>
+  {% if stocks %}
+  <table class="data-table">
+    <thead>
+      <tr><th>{% trans "الرمز" %}</th><th>{% trans "الشركة" %}</th><th>{% trans "السعر الحالي" %}</th><th>{% trans "التغيّر" %}</th><th>{% trans "حجم التداول اليوم" %}</th></tr>
+    </thead>
+    <tbody>
+      {% for stock in stocks %}
+      <tr onclick="window.location='{% url 'market:stock_detail' stock.symbol %}'" style="cursor:pointer;">
+        <td class="numeric"><a href="{% url 'market:stock_detail' stock.symbol %}" style="text-decoration:none; color:var(--gold-bright); font-weight:600;">{{ stock.symbol }}</a></td>
+        <td>{{ stock.company.legal_name }}</td>
+        <td class="numeric">{{ stock.current_price }}</td>
+        <td class="numeric {% if stock.change_percent >= 0 %}up{% else %}down{% endif %}">{{ stock.change_percent }}%</td>
+        <td class="numeric">{{ stock.volume_today }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty-state">
+    <div class="icon">📈</div>
+    <p>{% trans "لا توجد أسهم مُدرجة في السوق بعد." %}<br>{% trans "ستظهر هنا فور موافقة إدارة المنصة على أول طلبات الإدراج." %}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

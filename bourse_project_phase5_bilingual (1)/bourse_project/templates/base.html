@@ -1,0 +1,90 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% trans "بورصة الأسهم" %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+
+  {% if user.is_authenticated %}
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      {% if ticker_stocks %}
+        {% for stock in ticker_stocks %}
+        <a href="{% url 'market:stock_detail' stock.symbol %}" class="ticker-item {% if stock.change_percent >= 0 %}up{% else %}down{% endif %}">
+          <span class="sym">{{ stock.symbol }}</span>
+          <span class="numeric">{{ stock.current_price }}</span>
+          <span class="numeric">{% if stock.change_percent >= 0 %}▲{% else %}▼{% endif %} {{ stock.change_percent }}%</span>
+        </a>
+        {% endfor %}
+        {% for stock in ticker_stocks %}
+        <a href="{% url 'market:stock_detail' stock.symbol %}" class="ticker-item {% if stock.change_percent >= 0 %}up{% else %}down{% endif %}">
+          <span class="sym">{{ stock.symbol }}</span>
+          <span class="numeric">{{ stock.current_price }}</span>
+          <span class="numeric">{% if stock.change_percent >= 0 %}▲{% else %}▼{% endif %} {{ stock.change_percent }}%</span>
+        </a>
+        {% endfor %}
+      {% else %}
+        <span class="ticker-item">{% trans "لا توجد أسهم مُدرجة في السوق بعد" %}</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <a href="{% url 'accounts:dashboard_redirect' %}" class="brand">
+      <span class="mark">ب</span> {% trans "بورصة الأسهم" %}
+    </a>
+    <div class="nav-links">
+      <a href="{% url 'accounts:documents' %}">{% trans "مستنداتي" %}</a>
+      <span class="role-badge">{{ user.get_role_display }}</span>
+      <span>{{ user.username }}</span>
+      <div class="lang-switch" style="display:inline-flex; gap:6px;">
+        {% get_current_language as CURRENT_LANGUAGE %}
+        {% for lang_code, lang_name in LANGUAGES %}
+          {% if lang_code != CURRENT_LANGUAGE %}
+          <form action="{% url 'set_language' %}" method="post" style="display:inline">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <input type="hidden" name="language" value="{{ lang_code }}">
+            <button type="submit" class="btn-outline" style="width:auto; padding:6px 12px; font-size:13px; border-radius:6px;">{{ lang_name }}</button>
+          </form>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <form action="{% url 'accounts:logout' %}" method="post" style="display:inline">
+        {% csrf_token %}
+        <button type="submit" class="btn-outline" style="width:auto; padding:6px 14px; font-size:13px; border-radius:6px;">{% trans "تسجيل الخروج" %}</button>
+      </form>
+    </div>
+  </nav>
+  {% else %}
+  <div class="lang-switch" style="display:flex; justify-content:{% if LANGUAGE_BIDI %}flex-start{% else %}flex-end{% endif %}; gap:6px; padding:14px 24px 0;">
+    {% get_current_language as CURRENT_LANGUAGE %}
+    {% for lang_code, lang_name in LANGUAGES %}
+      {% if lang_code != CURRENT_LANGUAGE %}
+      <form action="{% url 'set_language' %}" method="post" style="display:inline">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <input type="hidden" name="language" value="{{ lang_code }}">
+        <button type="submit" class="btn-outline" style="width:auto; padding:6px 12px; font-size:13px; border-radius:6px;">{{ lang_name }}</button>
+      </form>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if messages %}
+  <div class="page" style="padding-bottom:0;">
+    {% for message in messages %}
+    <div class="flash-message {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% block content %}{% endblock %}
+
+</body>
+</html>

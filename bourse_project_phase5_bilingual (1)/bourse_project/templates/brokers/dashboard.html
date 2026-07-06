@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "لوحة تحكم السمسار" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "لوحة السمسار" %}</div>
+      <h1>{% if broker %}{{ broker.firm_name|default:user.username }}{% else %}{% trans "أكمل ملفك المهني" %}{% endif %}</h1>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <a href="{% url 'brokers:profile_edit' %}" class="btn-outline" style="width:auto; padding:10px 18px; border-radius:8px;">
+        {% if broker %}{% trans "تعديل بيانات الملف" %}{% else %}{% trans "إكمال بيانات الملف" %}{% endif %}
+      </a>
+      {% if broker %}
+      <a href="{% url 'brokers:add_client' %}" class="btn" style="width:auto; padding:10px 18px;">{% trans "ربط عميل جديد" %}</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if broker %}
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">{% trans "حالة الترخيص" %}</div>
+        <div class="value"><span class="badge {{ broker.status }}">{{ broker.get_status_display }}</span></div>
+      </div>
+      <div class="stat-card">
+        <div class="label">{% trans "رقم الترخيص" %}</div>
+        <div class="value numeric">{{ broker.license_number }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">{% trans "نسبة العمولة" %}</div>
+        <div class="value numeric">{{ broker.commission_rate }}%</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">{% trans "عدد العملاء" %}</div>
+        <div class="value numeric">{{ broker.clients.count }}</div>
+      </div>
+    </div>
+
+    <div class="section-title">{% trans "العملاء" %}</div>
+    {% if clients %}
+    <table class="data-table">
+      <thead><tr><th>{% trans "العميل" %}</th><th>{% trans "الحالة" %}</th><th>{% trans "تاريخ الربط" %}</th><th></th></tr></thead>
+      <tbody>
+        {% for bc in clients %}
+        <tr>
+          <td>
+            <a href="{% url 'brokers:client_detail' bc.id %}" style="text-decoration:none; color:var(--gold-bright); font-weight:600;">
+              {{ bc.client.username }}
+            </a>
+          </td>
+          <td><span class="badge {% if bc.is_active %}active{% else %}suspended{% endif %}">{% if bc.is_active %}{% trans "نشط" %}{% else %}{% trans "موقوف" %}{% endif %}</span></td>
+          <td class="numeric">{{ bc.linked_at|date:"Y-m-d" }}</td>
+          <td>
+            <form method="post" action="{% url 'brokers:toggle_client' bc.id %}" style="display:inline">
+              {% csrf_token %}
+              <button type="submit" class="btn-danger-outline">{% if bc.is_active %}{% trans "إيقاف" %}{% else %}{% trans "تفعيل" %}{% endif %}</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+      <div class="icon">🤝</div>
+      <p>{% trans "لا يوجد عملاء مرتبطون بك بعد." %}<br>{% blocktrans %}استخدم زر "ربط عميل جديد" أعلاه لربط أول عميل عبر اسم مستخدمه.{% endblocktrans %}</p>
+    </div>
+    {% endif %}
+
+  {% else %}
+    <div class="empty-state">
+      <div class="icon">💼</div>
+      <p>{% trans "لم يتم إنشاء ملفك كسمسار بعد. أكمل بياناتك المهنية أولًا لتتمكن من ربط العملاء وتنفيذ الأوامر نيابة عنهم." %}</p>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

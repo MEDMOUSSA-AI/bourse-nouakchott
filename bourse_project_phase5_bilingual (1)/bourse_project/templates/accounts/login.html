@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "تسجيل الدخول — بورصة الأسهم" %}{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="eyebrow">{% trans "بوابة الدخول" %}</div>
+    <h1>{% trans "مرحبًا بعودتك" %}</h1>
+    <p class="sub">{% trans "سجّل الدخول لمتابعة محفظتك أو إدارة نشاطك في السوق" %}</p>
+
+    {% if form.non_field_errors %}
+      <div class="non-field-errors">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="field">
+        <label for="{{ form.username.id_for_label }}">{% trans "اسم المستخدم" %}</label>
+        {{ form.username }}
+        {{ form.username.errors }}
+      </div>
+      <div class="field">
+        <label for="{{ form.password.id_for_label }}">{% trans "كلمة المرور" %}</label>
+        {{ form.password }}
+        {{ form.password.errors }}
+      </div>
+      <button type="submit" class="btn">{% trans "تسجيل الدخول" %}</button>
+    </form>
+
+    <div class="auth-switch">
+      {% trans "ليس لديك حساب؟" %} <a href="{% url 'accounts:register' %}">{% trans "أنشئ حسابًا جديدًا" %}</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

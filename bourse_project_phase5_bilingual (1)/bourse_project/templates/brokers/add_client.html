@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "ربط عميل جديد" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "عملاء السمسار" %}</div>
+      <h1>{% trans "ربط عميل جديد" %}</h1>
+    </div>
+    <a href="{% url 'brokers:dashboard' %}" class="btn-outline" style="width:auto; padding:9px 18px;">{% trans "رجوع للوحة" %}</a>
+  </div>
+
+  <div class="card" style="max-width:560px;">
+    <p style="color:var(--muted); font-size:13.5px; margin-bottom:18px;">
+      {% trans "أدخل اسم مستخدم متداول مسجَّل بالفعل على المنصة لربطه كعميل، بحيث تتمكن من الاطلاع على محفظته وتنفيذ أوامر شراء/بيع نيابة عنه." %}
+    </p>
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="{{ form.client_username.id_for_label }}">{{ form.client_username.label }}</label>
+        {{ form.client_username }}
+        {{ form.client_username.errors }}
+      </div>
+
+      <button type="submit" class="btn">{% trans "ربط العميل" %}</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

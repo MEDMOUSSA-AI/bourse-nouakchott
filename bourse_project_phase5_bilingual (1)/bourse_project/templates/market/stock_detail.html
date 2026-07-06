@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{{ stock.symbol }} — {{ stock.company.legal_name }}{% endblock %}
+
+{% block content %}
+<div class="page">
+
+  <div class="stock-header">
+    <div class="symbol-block">
+      <div class="eyebrow">{% trans "ورقة السهم" %}</div>
+      <div class="symbol">{{ stock.symbol }}</div>
+      <div class="company-name">{{ stock.company.legal_name }} — {{ stock.company.sector }}</div>
+    </div>
+    <div class="price-block">
+      <div class="price">{{ stock.current_price }}</div>
+      <div class="change {% if stock.change_percent >= 0 %}up{% else %}down{% endif %}">
+        {% if stock.change_percent >= 0 %}▲{% else %}▼{% endif %} {{ stock.change_percent }}%
+        <span style="color:var(--muted); direction:rtl; display:inline-block;">{% blocktrans with prev_close=stock.previous_close %}مقابل إغلاق أمس ({{ prev_close }}){% endblocktrans %}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="label">{% trans "أعلى سعر اليوم" %}</div>
+      <div class="value numeric">{{ stock.day_high }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">{% trans "أدنى سعر اليوم" %}</div>
+      <div class="value numeric">{{ stock.day_low }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">{% trans "حجم التداول اليوم" %}</div>
+      <div class="value numeric">{{ stock.volume_today }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">{% trans "إجمالي الأسهم المُصدرة" %}</div>
+      <div class="value numeric">{{ stock.company.total_shares_issued }}</div>
+    </div>
+  </div>
+
+  <div class="section-title">{% blocktrans with days=chart.width|default:"90" %}حركة السعر (آخر {{ days }} يوم متاح){% endblocktrans %}</div>
+  <div class="price-chart-wrap">
+    {% if chart %}
+    <svg viewBox="0 0 {{ chart.width }} {{ chart.height }}" preserveAspectRatio="none">
+      <polygon class="chart-area {% if chart.is_up %}up{% else %}down{% endif %}" points="{{ chart.area }}"></polygon>
+      <polyline class="chart-line {% if chart.is_up %}up{% else %}down{% endif %}" points="{{ chart.polyline }}"></polyline>
+    </svg>
+    <div class="chart-range">
+      <span>{% blocktrans with v=chart.min_price %}أدنى: {{ v }}{% endblocktrans %}</span>
+      <span>{% blocktrans with v=chart.max_price %}أعلى: {{ v }}{% endblocktrans %}</span>
+    </div>
+    {% else %}
+    <div class="empty-state" style="border:none; padding:30px 20px;">
+      <div class="icon">📉</div>
+      <p>{% trans "لا يوجد سجل سعري كافٍ بعد لرسم مخطط الحركة." %}</p>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if can_trade %}
+  <div class="section-title">{% trans "تقديم أمر تداول" %}</div>
+  <div class="order-form-card">
+    {% if holding %}
+    <div class="holding-note">
+      {% blocktrans with qty=holding.quantity avg=holding.average_buy_price %}رصيدك الحالي من هذا السهم: <span class="numeric">{{ qty }}</span> سهم
+      بمتوسط سعر شراء <span class="numeric">{{ avg }}</span>{% endblocktrans %}
+    </div>
+    {% endif %}
+    <form method="post" action="{% url 'market:place_order' stock.symbol %}">
+      {% csrf_token %}
+      <div class="order-form-grid">
+        <div class="field" style="margin-bottom:0;">
+          <label for="{{ form.order_type.id_for_label }}">{{ form.order_type.label }}</label>
+          {{ form.order_type }}
+          {{ form.order_type.errors }}
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label for="{{ form.quantity.id_for_label }}">{{ form.quantity.label }}</label>
+          {{ form.quantity }}
+          {{ form.quantity.errors }}
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label for="{{ form.price_per_share.id_for_label }}">{{ form.price_per_share.label }}</label>
+          {{ form.price_per_share }}
+          {{ form.price_per_share.errors }}
+        </div>
+        <button type="submit" class="btn">{% trans "إرسال الأمر" %}</button>
+      </div>
+    </form>
+  </div>
+
+  {% if my_open_orders %}
+  <div class="section-title">{% trans "أوامري المفتوحة على هذا السهم" %}</div>
+  <table class="data-table">
+    <thead>
+      <tr><th>{% trans "النوع" %}</th><th>{% trans "الكمية" %}</th><th>{% trans "المنفَّذ" %}</th><th>{% trans "السعر" %}</th><th>{% trans "الحالة" %}</th><th></th></tr>
+    </thead>
+    <tbody>
+      {% for order in my_open_orders %}
+      <tr>
+        <td class="{% if order.order_type == 'buy' %}up{% else %}down{% endif %}">{{ order.get_order_type_display }}</td>
+        <td class="numeric">{{ order.quantity }}</td>
+        <td class="numeric">{{ order.filled_quantity }}</td>
+        <td class="numeric">{{ order.price_per_share }}</td>
+        <td><span class="badge {{ order.status }}">{{ order.get_status_display }}</span></td>
+        <td>
+          <form method="post" action="{% url 'market:cancel_order' order.id %}" onsubmit="return confirm('{% trans "هل تريد إلغاء هذا الأمر؟" %}');">
+            {% csrf_token %}
+            <button type="submit" class="btn-danger-outline">{% trans "إلغاء" %}</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+  {% else %}
+  <div class="empty-state" style="margin-bottom:36px;">
+    {% if user.role == "broker" %}
+    {% url 'brokers:dashboard' as broker_dash_url %}
+    <p>{% trans "تقديم أوامر الشراء والبيع من صفحة السهم مباشرة متاح لحسابات المتداولين فقط." %}<br>{% blocktrans %}لتنفيذ أمر على هذا السهم نيابة عن أحد عملائك، توجّه إلى <a href="{{ broker_dash_url }}" style="color:var(--gold-bright);">لوحة السمسار</a> واختر العميل المعني.{% endblocktrans %}</p>
+    {% elif user.role == "portfolio_manager" %}
+    {% url 'portfolios:dashboard' as pm_dash_url %}
+    <p>{% trans "تقديم أوامر الشراء والبيع من صفحة السهم مباشرة متاح لحسابات المتداولين فقط." %}<br>{% blocktrans %}لتنفيذ أمر على هذا السهم نيابة عن محفظة تديرها، توجّه إلى <a href="{{ pm_dash_url }}" style="color:var(--gold-bright);">لوحة مدير المحفظة</a> واختر المحفظة المعنية.{% endblocktrans %}</p>
+    {% else %}
+    <p>{% trans "تقديم أوامر الشراء والبيع متاح حاليًا لحسابات المتداولين مباشرة." %}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div class="section-title">{% trans "دفتر الأوامر (Order Book)" %}</div>
+  <div class="orderbook-grid">
+    <div class="orderbook-side buy">
+      <div class="ob-head">{% trans "أوامر الشراء" %}</div>
+      {% if bids %}
+        {% for level in bids %}
+        <div class="ob-row"><span class="ob-price">{{ level.price_per_share }}</span><span class="ob-qty">{{ level.total_quantity }}</span></div>
+        {% endfor %}
+      {% else %}
+        <div class="ob-empty">{% trans "لا توجد أوامر شراء مفتوحة حاليًا" %}</div>
+      {% endif %}
+    </div>
+    <div class="orderbook-side sell">
+      <div class="ob-head">{% trans "أوامر البيع" %}</div>
+      {% if asks %}
+        {% for level in asks %}
+        <div class="ob-row"><span class="ob-price">{{ level.price_per_share }}</span><span class="ob-qty">{{ level.total_quantity }}</span></div>
+        {% endfor %}
+      {% else %}
+        <div class="ob-empty">{% trans "لا توجد أوامر بيع مفتوحة حاليًا" %}</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="section-title">{% trans "آخر الصفقات المُنفَّذة" %}</div>
+  {% if recent_trades %}
+  <table class="data-table">
+    <thead>
+      <tr><th>{% trans "الكمية" %}</th><th>{% trans "السعر" %}</th><th>{% trans "الوقت" %}</th></tr>
+    </thead>
+    <tbody>
+      {% for trade in recent_trades %}
+      <tr>
+        <td class="numeric">{{ trade.quantity }}</td>
+        <td class="numeric">{{ trade.price_per_share }}</td>
+        <td class="numeric">{{ trade.executed_at }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty-state">
+    <div class="icon">🤝</div>
+    <p>{% trans "لا توجد صفقات مُنفَّذة على هذا السهم بعد." %}<br>{% trans "سيبدأ التنفيذ الفعلي فور تشغيل محرك المطابقة في مرحلة قادمة." %}</p>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

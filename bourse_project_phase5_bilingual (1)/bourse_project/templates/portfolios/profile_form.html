@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "بيانات مدير المحفظة" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "ملف مدير المحفظة" %}</div>
+      <h1>{% if manager %}{% trans "تعديل بيانات الملف" %}{% else %}{% trans "إكمال بيانات الملف" %}{% endif %}</h1>
+    </div>
+  </div>
+
+  <div class="card" style="max-width:560px;">
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      <div class="field">
+        <label for="{{ form.license_number.id_for_label }}">{{ form.license_number.label }}</label>
+        {{ form.license_number }}
+        {{ form.license_number.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.management_fee_rate.id_for_label }}">{{ form.management_fee_rate.label }}</label>
+        {{ form.management_fee_rate }}
+        {{ form.management_fee_rate.errors }}
+      </div>
+
+      <div class="field">
+        <label for="{{ form.years_experience.id_for_label }}">{{ form.years_experience.label }}</label>
+        {{ form.years_experience }}
+        {{ form.years_experience.errors }}
+      </div>
+
+      <button type="submit" class="btn">{% trans "حفظ البيانات" %}</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
