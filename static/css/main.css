@@ -34,7 +34,7 @@ body {
   color: var(--text);
   font-family: var(--font-body);
   line-height: 1.6;
-  
+  direction: rtl;
 }
 
 a { color: inherit; }
@@ -363,7 +363,7 @@ table.data-table {
 }
 
 .badge.listed, .badge.active, .badge.approved, .badge.filled { color: var(--up); border-color: var(--up); }
-.badge.pending, .badge.draft, .badge.pending_review { color: var(--gold-bright); border-color: var(--gold); }
+.badge.pending, .badge.draft, .badge.pending_review, .badge.submitted, .badge.under_review { color: var(--gold-bright); border-color: var(--gold); }
 .badge.rejected, .badge.suspended, .badge.cancelled { color: var(--down); border-color: var(--down); }
 
 .empty-state {
@@ -528,3 +528,73 @@ table.data-table {
   cursor: pointer;
 }
 .btn-danger-outline:hover { background: rgba(226, 85, 76, 0.1); }
+
+/* لوحة تحكم إدارة المنصة — بطاقات التنقل */
+.admin-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.admin-nav-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  text-decoration: none;
+  color: var(--text);
+  position: relative;
+  transition: border-color .15s ease, transform .15s ease;
+}
+.admin-nav-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.admin-nav-icon { font-size: 26px; line-height: 1; flex-shrink: 0; }
+.admin-nav-body { flex: 1; min-width: 0; }
+.admin-nav-title { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+.admin-nav-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+.admin-nav-badge {
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--font-data);
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  flex-shrink: 0;
+}
+
+/* نماذج المراجعة السريعة (موافقة/رفض) داخل جداول لوحة الإدارة */
+.review-form { display: flex; gap: 8px; align-items: flex-start; flex-wrap: wrap; }
+.review-form textarea {
+  width: 180px;
+  min-height: 36px;
+  font-size: 12.5px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--surface-raised);
+  color: var(--text);
+  font-family: var(--font-body);
+  resize: vertical;
+}
+.btn-approve-outline {
+  border: 1px solid var(--up);
+  color: var(--up);
+  background: transparent;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-approve-outline:hover { background: rgba(70, 180, 120, 0.1); }
