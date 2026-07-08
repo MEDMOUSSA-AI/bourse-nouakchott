@@ -9,13 +9,66 @@
       <div class="eyebrow">{% trans "إدارة المنصة" %}</div>
       <h1>{% blocktrans with username=user.username %}مرحبًا، {{ username }}{% endblocktrans %}</h1>
     </div>
-    <a href="/admin/" class="btn" style="width:auto;">{% trans "فتح لوحة إدارة Django" %}</a>
   </div>
 
-  <div class="empty-state">
-    <div class="icon">⚙</div>
-    <p>{% trans "هذه لوحة تحكم مبدئية للمرحلة الأولى." %}<br>
-    {% trans "استخدم لوحة إدارة Django لمراجعة طلبات الإدراج، المستخدمين، والمستندات حتى نبني واجهات مخصصة في المراحل القادمة." %}</p>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="label">{% trans "إجمالي المستخدمين" %}</div>
+      <div class="value numeric">{{ stats.total_users }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">{% trans "الشركات المسجَّلة" %}</div>
+      <div class="value numeric">{{ stats.total_companies }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">{% trans "الشركات المُدرجة" %}</div>
+      <div class="value numeric">{{ stats.listed_companies }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">{% trans "الأسهم في السوق" %}</div>
+      <div class="value numeric">{{ stats.total_stocks }}</div>
+    </div>
+  </div>
+
+  <div class="section-title">{% trans "مهام بانتظار المراجعة" %}</div>
+  <div class="admin-nav-grid">
+    <a href="{% url 'accounts:admin_documents' %}" class="admin-nav-card">
+      <div class="admin-nav-icon">📎</div>
+      <div class="admin-nav-body">
+        <div class="admin-nav-title">{% trans "مراجعة مستندات التحقق" %}</div>
+        <div class="admin-nav-desc">{% trans "قبول أو رفض مستندات الهوية والسجلات القانونية المرفوعة من المستخدمين" %}</div>
+      </div>
+      {% if stats.pending_documents %}
+      <div class="admin-nav-badge">{{ stats.pending_documents }}</div>
+      {% endif %}
+    </a>
+
+    <a href="{% url 'accounts:admin_listing_requests' %}" class="admin-nav-card">
+      <div class="admin-nav-icon">📝</div>
+      <div class="admin-nav-body">
+        <div class="admin-nav-title">{% trans "مراجعة طلبات الإدراج" %}</div>
+        <div class="admin-nav-desc">{% trans "الموافقة على طلبات الشركات وإدراج أسهمها تلقائيًا في السوق، أو رفضها" %}</div>
+      </div>
+      {% if stats.pending_listing_requests %}
+      <div class="admin-nav-badge">{{ stats.pending_listing_requests }}</div>
+      {% endif %}
+    </a>
+
+    <a href="{% url 'accounts:admin_users' %}" class="admin-nav-card">
+      <div class="admin-nav-icon">👥</div>
+      <div class="admin-nav-body">
+        <div class="admin-nav-title">{% trans "المستخدمون" %}</div>
+        <div class="admin-nav-desc">{% trans "استعراض كل المستخدمين المسجَّلين على المنصة وأدوارهم وحالة التحقق منهم" %}</div>
+      </div>
+    </a>
+
+    <a href="/admin/" class="admin-nav-card">
+      <div class="admin-nav-icon">⚙</div>
+      <div class="admin-nav-body">
+        <div class="admin-nav-title">{% trans "لوحة إدارة Django المتقدمة" %}</div>
+        <div class="admin-nav-desc">{% trans "للمهام التقنية المتقدمة غير المتوفرة بعد في هذه اللوحة" %}</div>
+      </div>
+    </a>
   </div>
 </div>
 {% endblock %}
