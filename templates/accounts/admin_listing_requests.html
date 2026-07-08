@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "مراجعة طلبات الإدراج" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "إدارة المنصة" %}</div>
+      <h1>{% trans "مراجعة طلبات الإدراج" %}</h1>
+    </div>
+    <a href="{% url 'accounts:admin_dashboard' %}" class="btn-outline" style="width:auto; padding:9px 18px;">{% trans "رجوع للوحة" %}</a>
+  </div>
+
+  {% if listing_requests %}
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>{% trans "الشركة" %}</th>
+        <th>{% trans "الأسهم المطلوبة" %}</th>
+        <th>{% trans "السعر المقترح" %}</th>
+        <th>{% trans "الرمز المقترح" %}</th>
+        <th>{% trans "الحالة" %}</th>
+        <th>{% trans "تاريخ التقديم" %}</th>
+        <th>{% trans "الإجراء" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for lr in listing_requests %}
+      <tr>
+        <td>{{ lr.company.legal_name }}</td>
+        <td class="numeric">{{ lr.requested_shares }}</td>
+        <td class="numeric">{{ lr.requested_price_per_share }}</td>
+        <td class="numeric">{{ lr.requested_symbol|default:"—" }}</td>
+        <td><span class="badge {{ lr.status }}">{{ lr.get_status_display }}</span></td>
+        <td class="numeric">{{ lr.submitted_at|date:"Y-m-d H:i" }}</td>
+        <td>
+          {% if lr.status == "submitted" or lr.status == "under_review" %}
+          <form method="post" action="{% url 'accounts:admin_listing_request_review' lr.id %}" class="review-form">
+            {% csrf_token %}
+            <textarea name="admin_note" placeholder="{% trans 'ملاحظة اختيارية' %}"></textarea>
+            <button type="submit" name="action" value="approve" class="btn-approve-outline">{% trans "موافقة وإدراج" %}</button>
+            <button type="submit" name="action" value="reject" class="btn-danger-outline">{% trans "رفض" %}</button>
+          </form>
+          {% else %}
+          <span style="color:var(--muted); font-size:12.5px;">{{ lr.admin_note|default:"—" }}</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty-state">
+    <div class="icon">📝</div>
+    <p>{% trans "لا توجد طلبات إدراج مقدَّمة بعد." %}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

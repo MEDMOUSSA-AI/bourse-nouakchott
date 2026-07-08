@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "مراجعة مستندات التحقق" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "إدارة المنصة" %}</div>
+      <h1>{% trans "مراجعة مستندات التحقق" %}</h1>
+    </div>
+    <a href="{% url 'accounts:admin_dashboard' %}" class="btn-outline" style="width:auto; padding:9px 18px;">{% trans "رجوع للوحة" %}</a>
+  </div>
+
+  {% if documents %}
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>{% trans "المستخدم" %}</th>
+        <th>{% trans "النوع" %}</th>
+        <th>{% trans "الملف" %}</th>
+        <th>{% trans "الحالة" %}</th>
+        <th>{% trans "تاريخ الرفع" %}</th>
+        <th>{% trans "الإجراء" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for doc in documents %}
+      <tr>
+        <td>{{ doc.user.username }} <span style="color:var(--muted); font-size:12px;">({{ doc.user.get_role_display }})</span></td>
+        <td>{{ doc.document_type }}</td>
+        <td><a href="{{ doc.file.url }}" target="_blank" style="color:var(--gold-bright); text-decoration:none;">{% trans "عرض الملف" %}</a></td>
+        <td><span class="badge {{ doc.status }}">{{ doc.get_status_display }}</span></td>
+        <td class="numeric">{{ doc.uploaded_at|date:"Y-m-d H:i" }}</td>
+        <td>
+          {% if doc.status == "pending" %}
+          <form method="post" action="{% url 'accounts:admin_document_review' doc.id %}" class="review-form">
+            {% csrf_token %}
+            <textarea name="reviewer_note" placeholder="{% trans 'ملاحظة اختيارية' %}"></textarea>
+            <button type="submit" name="action" value="approve" class="btn-approve-outline">{% trans "قبول" %}</button>
+            <button type="submit" name="action" value="reject" class="btn-danger-outline">{% trans "رفض" %}</button>
+          </form>
+          {% else %}
+          <span style="color:var(--muted); font-size:12.5px;">{{ doc.reviewer_note|default:"—" }}</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty-state">
+    <div class="icon">📎</div>
+    <p>{% trans "لا توجد مستندات تحقق مرفوعة بعد." %}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

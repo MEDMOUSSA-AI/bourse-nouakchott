@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "المستخدمون" %}{% endblock %}
+
+{% block content %}
+<div class="page">
+  <div class="dash-header">
+    <div>
+      <div class="eyebrow">{% trans "إدارة المنصة" %}</div>
+      <h1>{% trans "المستخدمون" %}</h1>
+    </div>
+    <a href="{% url 'accounts:admin_dashboard' %}" class="btn-outline" style="width:auto; padding:9px 18px;">{% trans "رجوع للوحة" %}</a>
+  </div>
+
+  {% if users %}
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>{% trans "اسم المستخدم" %}</th>
+        <th>{% trans "البريد الإلكتروني" %}</th>
+        <th>{% trans "الدور" %}</th>
+        <th>{% trans "الهوية موثَّقة" %}</th>
+        <th>{% trans "الحساب مفعَّل" %}</th>
+        <th>{% trans "تاريخ التسجيل" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for u in users %}
+      <tr>
+        <td>{{ u.username }}</td>
+        <td>{{ u.email|default:"—" }}</td>
+        <td>{{ u.get_role_display }}</td>
+        <td><span class="badge {% if u.is_verified %}approved{% else %}pending{% endif %}">{% if u.is_verified %}{% trans "موثَّقة" %}{% else %}{% trans "غير موثَّقة" %}{% endif %}</span></td>
+        <td><span class="badge {% if u.is_active %}active{% else %}suspended{% endif %}">{% if u.is_active %}{% trans "مفعَّل" %}{% else %}{% trans "موقوف" %}{% endif %}</span></td>
+        <td class="numeric">{{ u.created_at|date:"Y-m-d" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty-state">
+    <div class="icon">👥</div>
+    <p>{% trans "لا يوجد مستخدمون مسجَّلون بعد." %}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
