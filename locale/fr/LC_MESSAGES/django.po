@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-06 03:01+0000\n"
+"POT-Creation-Date: 2026-07-07 20:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,6 +90,18 @@ msgid "تم رفع المستند بنجاح، بانتظار مراجعة ال�
 msgstr ""
 "Le document a été téléversé avec succès, en attente d'examen par "
 "l'administration."
+
+#| msgid "تم حفظ بيانات الشركة بنجاح."
+msgid "تم تحديث حالة المستند بنجاح."
+msgstr "Le statut du document a été mis à jour avec succès."
+
+#| msgid "تمت الموافقة على %(count)s طلب/طلبات وإدراج الأسهم بنجاح."
+msgid "تمت الموافقة على طلب الإدراج وإنشاء السهم بنجاح."
+msgstr "La demande de cotation a été approuvée et l'action créée avec succès."
+
+#| msgid "تقديم طلب إدراج"
+msgid "تم رفض طلب الإدراج."
+msgstr "La demande de cotation a été rejetée."
 
 msgid "رقم الترخيص"
 msgstr "Numéro de licence"
@@ -458,19 +470,149 @@ msgstr "Administration de la plateforme"
 msgid "مرحبًا، %(username)s"
 msgstr "Bonjour, %(username)s"
 
-msgid "فتح لوحة إدارة Django"
-msgstr "Ouvrir le panneau d'administration Django"
+#| msgid "اسم المستخدم"
+msgid "إجمالي المستخدمين"
+msgstr "Total des utilisateurs"
 
-msgid "هذه لوحة تحكم مبدئية للمرحلة الأولى."
-msgstr "Ceci est un tableau de bord préliminaire pour la première phase."
+#| msgid "السجلات السعرية"
+msgid "الشركات المسجَّلة"
+msgstr "Sociétés enregistrées"
 
-msgid ""
-"استخدم لوحة إدارة Django لمراجعة طلبات الإدراج، المستخدمين، والمستندات حتى "
-"نبني واجهات مخصصة في المراحل القادمة."
+#| msgid "الأسهم المُدرجة"
+msgid "الشركات المُدرجة"
+msgstr "Sociétés cotées"
+
+#| msgid "الأسهم المطلوبة"
+msgid "الأسهم في السوق"
+msgstr "Actions sur le marché"
+
+#| msgid "ملاحظة المراجع"
+msgid "مهام بانتظار المراجعة"
+msgstr "Tâches en attente d'examen"
+
+#| msgid "مستندات التحقق"
+msgid "مراجعة مستندات التحقق"
+msgstr "Examiner les documents de vérification"
+
+msgid "قبول أو رفض مستندات الهوية والسجلات القانونية المرفوعة من المستخدمين"
 msgstr ""
-"Utilisez le panneau d'administration Django pour examiner les demandes de "
-"cotation, les utilisateurs et les documents en attendant que des interfaces "
-"dédiées soient développées dans les prochaines phases."
+"Accepter ou rejeter les documents d'identité et registres légaux téléversés "
+"par les utilisateurs"
+
+#| msgid "طلبات الإدراج"
+msgid "مراجعة طلبات الإدراج"
+msgstr "Examiner les demandes de cotation"
+
+#| msgid "تمت الموافقة على %(count)s طلب/طلبات وإدراج الأسهم بنجاح."
+msgid "الموافقة على طلبات الشركات وإدراج أسهمها تلقائيًا في السوق، أو رفضها"
+msgstr ""
+"Approuver les demandes des sociétés et coter automatiquement leurs actions "
+"sur le marché, ou les rejeter"
+
+msgid "استعراض كل المستخدمين المسجَّلين على المنصة وأدوارهم وحالة التحقق منهم"
+msgstr ""
+"Consulter tous les utilisateurs inscrits sur la plateforme, leurs rôles et "
+"leur statut de vérification"
+
+#| msgid "لوحة إدارة المنصة"
+msgid "لوحة إدارة Django المتقدمة"
+msgstr "Panneau d'administration Django avancé"
+
+msgid "للمهام التقنية المتقدمة غير المتوفرة بعد في هذه اللوحة"
+msgstr ""
+"Pour les tâches techniques avancées non encore disponibles dans ce tableau "
+"de bord"
+
+msgid "رجوع للوحة"
+msgstr "Retour au tableau de bord"
+
+#| msgid "المستخدمون"
+msgid "المستخدم"
+msgstr "Utilisateur"
+
+msgid "النوع"
+msgstr "Type"
+
+msgid "الحالة"
+msgstr "Statut"
+
+msgid "تاريخ الرفع"
+msgstr "Date de téléversement"
+
+msgid "الإجراء"
+msgstr "Action"
+
+#| msgid "الملف"
+msgid "عرض الملف"
+msgstr "Voir le fichier"
+
+#| msgid "ملاحظة الإدارة"
+msgid "ملاحظة اختيارية"
+msgstr "Remarque facultative"
+
+#| msgid "مقبول"
+msgid "قبول"
+msgstr "Accepter"
+
+#| msgid "مرفوض"
+msgid "رفض"
+msgstr "Rejeter"
+
+#| msgid "لا توجد بيانات كافية بعد"
+msgid "لا توجد مستندات تحقق مرفوعة بعد."
+msgstr "Aucun document de vérification n'a encore été téléversé."
+
+msgid "الشركة"
+msgstr "Société"
+
+msgid "الأسهم المطلوبة"
+msgstr "Actions demandées"
+
+msgid "السعر المقترح"
+msgstr "Prix proposé"
+
+#| msgid "السعر المقترح"
+msgid "الرمز المقترح"
+msgstr "Symbole proposé"
+
+msgid "تاريخ التقديم"
+msgstr "Date de soumission"
+
+#| msgid "حالة الإدراج"
+msgid "موافقة وإدراج"
+msgstr "Approuver et coter"
+
+#| msgid "لا توجد بيانات كافية بعد"
+msgid "لا توجد طلبات إدراج مقدَّمة بعد."
+msgstr "Aucune demande de cotation n'a encore été soumise."
+
+msgid "الدور"
+msgstr "Rôle"
+
+msgid "الهوية موثَّقة"
+msgstr "Identité vérifiée"
+
+#| msgid "لديك حساب بالفعل؟"
+msgid "الحساب مفعَّل"
+msgstr "Compte actif"
+
+#| msgid "تاريخ التقديم"
+msgid "تاريخ التسجيل"
+msgstr "Date d'inscription"
+
+msgid "موثَّقة"
+msgstr "Vérifiée"
+
+#| msgid "مدير محفظة"
+msgid "غير موثَّقة"
+msgstr "Non vérifiée"
+
+msgid "مفعَّل"
+msgstr "Actif"
+
+#| msgid "لا يوجد عملاء مرتبطون بك بعد."
+msgid "لا يوجد مستخدمون مسجَّلون بعد."
+msgstr "Aucun utilisateur inscrit pour le moment."
 
 msgid "مستنداتي"
 msgstr "Mes documents"
@@ -486,15 +628,6 @@ msgstr "Téléverser le document"
 
 msgid "المستندات المرفوعة"
 msgstr "Documents téléversés"
-
-msgid "النوع"
-msgstr "Type"
-
-msgid "الحالة"
-msgstr "Statut"
-
-msgid "تاريخ الرفع"
-msgstr "Date de téléversement"
 
 msgid "ملاحظة المراجع"
 msgstr "Remarque du réviseur"
@@ -566,9 +699,6 @@ msgstr "Lier un nouveau client"
 
 msgid "عملاء السمسار"
 msgstr "Clients du courtier"
-
-msgid "رجوع للوحة"
-msgstr "Retour au tableau de bord"
 
 msgid ""
 "أدخل اسم مستخدم متداول مسجَّل بالفعل على المنصة لربطه كعميل، بحيث تتمكن من "
@@ -726,17 +856,8 @@ msgstr "Statut de cotation"
 msgid "القطاع"
 msgstr "Secteur"
 
-msgid "الأسهم المطلوبة"
-msgstr "Actions demandées"
-
-msgid "السعر المقترح"
-msgstr "Prix proposé"
-
 msgid "ملاحظة الإدارة"
 msgstr "Remarque de l'administration"
-
-msgid "تاريخ التقديم"
-msgstr "Date de soumission"
 
 msgid "لم تقدّم أي طلب إدراج بعد."
 msgstr "Vous n'avez encore soumis aucune demande de cotation."
@@ -821,9 +942,6 @@ msgstr "Plus fortes baisses du jour"
 
 msgid "الأسهم المُدرجة"
 msgstr "Actions cotées"
-
-msgid "الشركة"
-msgstr "Société"
 
 msgid "السعر الحالي"
 msgstr "Prix actuel"
